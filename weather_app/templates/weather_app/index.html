@@ -22,9 +22,10 @@
             <div class="columns">
                 <div class="column is-offset-4 is-4">
                     <form method="POST">
+                        {% csrf_token %}
                         <div class="field has-addons">
                             <div class="control is-expanded">
-                                <input class="input" type="text" placeholder="City Name">
+                                <input class="input" type="text" placeholder="City Name" name="name">
                             </div>
                             <div class="control">
                                 <button class="button is-info">
@@ -33,6 +34,13 @@
                             </div>
                         </div>
                     </form>
+                    {% if message %}
+                    <div style="border: 1px solid red; padding: 30px; margin-top: 50px; align-items: center;text-align: center;">
+                        <p style="color: red;font-weight: bold;">
+                            {{message}}
+                        </p>
+                    </div>
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -41,6 +49,7 @@
         <div class="container">
             <div class="columns">
                 <div class="column is-offset-4 is-4">
+                    {% for weather in weather_data %}
                     <div class="box">
                         <article class="media">
                             <div class="media-left">
@@ -60,6 +69,7 @@
                             </div>
                         </article>
                     </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>
